@@ -22,7 +22,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
+                  node-version: '22'
                   cache: 'npm' # Cache npm pour accélérer les runs suivants
                   cache-dependency-path: frontend/package-lock.json
 
@@ -44,8 +44,8 @@ jobs:
               # ↑ Si une règle ESLint est violée, le pipeline s'arrête ici en rouge
 
             # ÉTAPE 6 : Exécuter les tests Jest
-            - name: Tests Jest
-              run: npm test -- --watchAll=false --ci
+            - name: Tests Vitest
+              run: npm run test -- --reporter=verbose
               working-directory: frontend
               # ↑ '--watchAll=false' : pas de mode interactif (nécessaire en CI)
               # ↑ '--ci' : le test échoue si un snapshot est obsolète
