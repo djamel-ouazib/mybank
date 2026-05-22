@@ -143,7 +143,7 @@ function App() {
                     Evrything you need, nothing you don't.
                 </h2>
                 <div className=" flex gap-6 w-[80%] ">
-                    <div className="flex-1 flex justify-between flex-col p-4 h-[250px] border border-gray-200 rounded-lg ">
+                    <div className="flex-1 flex justify-between flex-col p-4 h-62.5 border border-gray-200 rounded-lg ">
                         <div className="w-8.5 h-8.5 text-[#156064] text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
                             +
                         </div>
@@ -157,7 +157,7 @@ function App() {
                             financial records.
                         </p>
                     </div>
-                    <div className=" p-4 flex-1 flex justify-between flex-col h-[250px] border border-gray-200 rounded-lg ">
+                    <div className=" p-4 flex-1 flex justify-between flex-col h-62.5 border border-gray-200 rounded-lg ">
                         <div className="w-8.5 h-8.5 text-[#156064] text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
                             +
                         </div>
@@ -171,7 +171,7 @@ function App() {
                             goes.
                         </p>
                     </div>
-                    <div className="flex-1 p-4 flex flex-col justify-between h-[250px] border border-gray-200 rounded-lg ">
+                    <div className="flex-1 p-4 flex flex-col justify-between h-62.5 border border-gray-200 rounded-lg ">
                         <div className="w-8.5 h-8.5 text-[#156064] text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
                             +
                         </div>
