@@ -18,7 +18,8 @@ services:
             - '8000:9000'
         environment:
             DATABASE_URL: 'mysql://mybank:secret@db:3306/mybank'
-            APP_ENV: dev
+            APP_ENV: test
+
         depends_on:
             db:
                 condition: service_healthy
@@ -30,6 +31,7 @@ services:
     # Service 3 : Base de données MySQL
     db:
         image: mysql:8.0
+
         environment:
             MYSQL_DATABASE: mybank
             MYSQL_USER: mybank
