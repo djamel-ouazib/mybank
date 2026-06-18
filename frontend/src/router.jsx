@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import DashboardLayout from './layouts/DashboardLayout'
 import Dashboard from './pages/Dashboard'
-import Settings from './pages/settings'
+import Settings from './pages/Settings'
 import App from './App'
 
 // export const router = createBrowserRouter([
