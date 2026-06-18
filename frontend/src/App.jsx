@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import './App.css'
 
 function App() {
+    const navigate = useNavigate()
     return (
         <>
             <nav className="flex w-6xl py-4 items-center m-auto justify-between">
@@ -14,7 +16,12 @@ function App() {
                 </div>
                 <div className="flex gap-3 p-2 hover:bg-zinc-50">
                     <button>Sign in</button>
-                    <button className="py-2 rounded-lg text-white px-4 bg-[#156064]">
+                    <button
+                        className="py-2 rounded-lg text-white px-4 bg-[#156064]"
+                        onClick={() => {
+                            navigate('/app')
+                        }}
+                    >
                         Get started free
                     </button>
                 </div>
