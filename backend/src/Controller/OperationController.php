@@ -62,6 +62,19 @@ class OperationController extends AbstractController
         return $this->json($this->serializeOne($op), 201);
     }
 
+    /** GET /api/operations/summary — must come BEFORE /{id} to avoid route collision */
+    #[Route('/summary', name: 'summary', methods: ['GET'])]
+    public function summary(): JsonResponse
+    {
+        $income   = $this->repo->getTotalIncome();
+        $expenses = $this->repo->getTotalExpenses();
+        return $this->json([
+            'income'   => $income,
+            'expenses' => $expenses,
+            'balance'  => $income - $expenses,
+        ]);
+    }
+
     /** GET /api/operations/{id} */
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Operation $op): JsonResponse
@@ -97,19 +110,6 @@ class OperationController extends AbstractController
         $this->em->remove($op);
         $this->em->flush();
         return $this->json(null, 204);
-    }
-
-    /** GET /api/operations/summary */
-    #[Route('/summary', name: 'summary', methods: ['GET'])]
-    public function summary(): JsonResponse
-    {
-        $income   = $this->repo->getTotalIncome();
-        $expenses = $this->repo->getTotalExpenses();
-        return $this->json([
-            'income'   => $income,
-            'expenses' => $expenses,
-            'balance'  => $income - $expenses,
-        ]);
     }
 
     // ── Serialization helpers ─────────────────────────────────────
