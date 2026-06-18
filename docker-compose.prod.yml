@@ -11,7 +11,7 @@ services:
             APP_ENV: prod
 
     frontend:
-        image: ghcr.io/<TON_USER>/mybank-frontend:latest
+        image: ghcr.io/<djamel-ouazib>/mybank-frontend:latest
         container_name: mybank-frontend
         restart: always
         ports:
