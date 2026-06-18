@@ -87,15 +87,21 @@ export default function Dashboard() {
             )}
             <section>
                 <div className="space-y-6">
-                    {operations.map((operation) => (
-                        <OperationCard
-                            key={operation.id}
-                            label={operation.label}
-                            date={operation.date}
-                            category={operation.category}
-                            amount={operation.amount}
-                        />
-                    ))}
+                    {loading && (
+                        <p className="text-sm text-zinc-400">
+                            Loading operations…
+                        </p>
+                    )}
+                    {!loading &&
+                        operations.map((operation) => (
+                            <OperationCard
+                                key={operation.id}
+                                label={operation.label}
+                                date={operation.date}
+                                category={operation.category}
+                                amount={operation.amount}
+                            />
+                        ))}
                 </div>
             </section>
         </div>
