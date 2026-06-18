@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+    backend:
+        image: ghcr.io/<djamel-ouazib>/mybank-backend:latest
+        container_name: mybank-backend
+        restart: always
+        ports:
+            - '8000:8000'
+        environment:
+            APP_ENV: prod
+
+    frontend:
+        image: ghcr.io/<TON_USER>/mybank-frontend:latest
+        container_name: mybank-frontend
+        restart: always
+        ports:
+            - '80:80'
+        depends_on:
+            - backend
