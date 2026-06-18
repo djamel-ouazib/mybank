@@ -1,20 +1,37 @@
-version: '3.8'
-
 services:
+    db:
+        image: mysql:8.0
+        container_name: mybank-db
+        restart: always
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - db_data:/var/lib/mysql
+
     backend:
         image: ghcr.io/djamel-ouazib/mybank-backend:latest
         container_name: mybank-backend
         restart: always
-        ports:
-            - '8000:8000'
+        depends_on:
+            - db
         environment:
             APP_ENV: prod
+            APP_SECRET: ${APP_SECRET}
+            DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+        ports:
+            - '8000:80'
 
     frontend:
         image: ghcr.io/djamel-ouazib/mybank-frontend:latest
         container_name: mybank-frontend
         restart: always
-        ports:
-            - '80:80'
         depends_on:
             - backend
+        ports:
+            - '80:80'
+
+volumes:
+    db_data:
