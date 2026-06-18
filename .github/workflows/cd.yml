@@ -10,6 +10,8 @@ jobs:
     build-and-push:
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         runs-on: ubuntu-latest
+        permissions:
+            packages: write
 
         steps:
             - name: Checkout
@@ -22,13 +24,11 @@ jobs:
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
-            # BACKEND IMAGE
             - name: Build backend image
               run: |
                   docker build -t ghcr.io/${{ github.repository_owner }}/mybank-backend:latest ./backend
                   docker push ghcr.io/${{ github.repository_owner }}/mybank-backend:latest
 
-            # FRONTEND IMAGE
             - name: Build frontend image
               run: |
                   docker build -t ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest ./frontend
@@ -46,6 +46,8 @@ jobs:
                   username: ${{ secrets.SERVER_USER }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
                   script: |
+                      echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
                       cd /home/deploy/mybank
 
                       echo "Pull images..."
