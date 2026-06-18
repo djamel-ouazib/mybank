@@ -141,7 +141,7 @@ vite.config.ts.timestamp-*
 
 # Ajoutez ces lignes à la fin du .gitignore existant
 vendor/
-.env
+
 .env.local
 var/
 dist/
