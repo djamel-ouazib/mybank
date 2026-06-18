@@ -71,7 +71,7 @@ export default function AddOperationModal({ onClose, onSaved }) {
             onSaved?.(data)
             onClose?.()
         } catch (e) {
-            setError('Failed to save. Please try again.')
+            console.error(e) + setError('Failed to save. Please try again.')
         } finally {
             setLoading(false)
         }
