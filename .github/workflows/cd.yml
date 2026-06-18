@@ -2,7 +2,7 @@ name: CD MyBank
 
 on:
     workflow_run:
-        workflows: ['CI MyBank'] # ⚠️ doit matcher EXACT CI name
+        workflows: ['CI MyBank']
         types: [completed]
         branches: [main]
 
@@ -12,7 +12,8 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v4
 
             - name: Login GHCR
               uses: docker/login-action@v3
@@ -21,9 +22,34 @@ jobs:
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Préparer les tags
-              id: meta
+            # BACKEND IMAGE
+            - name: Build backend image
               run: |
-                  REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-                  echo "repo=$REPO" >> $GITHUB_OUTPUT
-                  echo "sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+                  docker build -t ghcr.io/${{ github.repository_owner }}/mybank-backend:latest ./backend
+                  docker push ghcr.io/${{ github.repository_owner }}/mybank-backend:latest
+
+            # FRONTEND IMAGE
+            - name: Build frontend image
+              run: |
+                  docker build -t ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest ./frontend
+                  docker push ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest
+
+    deploy:
+        needs: build-and-push
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Deploy to VPS via SSH
+              uses: appleboy/ssh-action@v1.2.0
+              with:
+                  host: ${{ secrets.SERVER_HOST }}
+                  username: ${{ secrets.SERVER_USER }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  script: |
+                      cd /home/deploy/mybank
+
+                      echo "Pull images..."
+                      docker compose -f docker-compose.prod.yml pull
+
+                      echo "Restart containers..."
+                      docker compose -f docker-compose.prod.yml up -d --remove-orphans
