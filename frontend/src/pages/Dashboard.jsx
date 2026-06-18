@@ -7,6 +7,7 @@ import OperationCard from '../components/ui/OperationCard'
 export default function Dashboard() {
     const [showModal, setShowModal] = useState(false)
     const [operations, setOperations] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchOperations = async () => {
