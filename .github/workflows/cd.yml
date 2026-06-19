@@ -24,15 +24,50 @@ jobs:
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
+            - name: Préparer les tags
+              id: meta
+              run: |
+                  echo "sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
             - name: Build backend image
               run: |
-                  docker build -t ghcr.io/${{ github.repository_owner }}/mybank-backend:latest ./backend
+                  docker build \
+                    -t ghcr.io/${{ github.repository_owner }}/mybank-backend:latest \
+                    -t ghcr.io/${{ github.repository_owner }}/mybank-backend:${{ steps.meta.outputs.sha }} \
+                    ./backend
+
+            - name: Scan backend image (Trivy)
+              uses: aquasecurity/trivy-action@0.28.0
+              with:
+                  image-ref: ghcr.io/${{ github.repository_owner }}/mybank-backend:latest
+                  format: table
+                  exit-code: '0'
+                  severity: CRITICAL,HIGH
+
+            - name: Push backend image
+              run: |
                   docker push ghcr.io/${{ github.repository_owner }}/mybank-backend:latest
+                  docker push ghcr.io/${{ github.repository_owner }}/mybank-backend:${{ steps.meta.outputs.sha }}
 
             - name: Build frontend image
               run: |
-                  docker build -t ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest ./frontend
+                  docker build \
+                    -t ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest \
+                    -t ghcr.io/${{ github.repository_owner }}/mybank-frontend:${{ steps.meta.outputs.sha }} \
+                    ./frontend
+
+            - name: Scan frontend image (Trivy)
+              uses: aquasecurity/trivy-action@0.28.0
+              with:
+                  image-ref: ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest
+                  format: table
+                  exit-code: '0'
+                  severity: CRITICAL,HIGH
+
+            - name: Push frontend image
+              run: |
                   docker push ghcr.io/${{ github.repository_owner }}/mybank-frontend:latest
+                  docker push ghcr.io/${{ github.repository_owner }}/mybank-frontend:${{ steps.meta.outputs.sha }}
 
     deploy:
         needs: build-and-push
