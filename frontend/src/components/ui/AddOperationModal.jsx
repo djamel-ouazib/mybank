@@ -17,6 +17,11 @@ const CATEGORIES = [
  * CSS class mappings for each category badge.
  * `selected` is applied when the category is active.
  * `base` is applied when the category is not selected.
+ *
+ * Note: these per-category swatches are intentionally kept distinct from the
+ * brand palette (primary/accent/success/error), since they exist purely to
+ * help users visually tell categories apart at a glance, not to convey
+ * financial meaning (unlike income/expense or positive/negative amounts).
  */
 const CAT_STYLES = {
     food: {
@@ -132,7 +137,7 @@ export default function AddOperationModal({ onClose, onSaved }) {
 
                 {/* Modal body: form fields */}
                 <div className="flex flex-col gap-4 px-5 py-4">
-                    {/* Type toggle: expense or income */}
+                    {/* Type toggle: expense or income (error/success tokens, matching the same semantics used for negative/positive amounts) */}
                     <div className="grid grid-cols-2 gap-2">
                         {['expense', 'income'].map((t) => (
                             <button
@@ -142,8 +147,8 @@ export default function AddOperationModal({ onClose, onSaved }) {
                                     ${
                                         form.type === t
                                             ? t === 'expense'
-                                                ? 'bg-red-50 border-red-400 text-red-700'
-                                                : 'bg-green-50 border-green-500 text-green-700'
+                                                ? 'bg-error/10 border-error/40 text-error'
+                                                : 'bg-success/10 border-success/40 text-success'
                                             : 'border-zinc-200 text-zinc-400 hover:bg-zinc-50'
                                     }`}
                             >
@@ -162,7 +167,7 @@ export default function AddOperationModal({ onClose, onSaved }) {
                             value={form.label}
                             onChange={(e) => set('label', e.target.value)}
                             placeholder="e.g. Supermarket Carrefour"
-                            className="h-9 border border-zinc-200 rounded-xl px-3 text-sm outline-none focus:border-[#156064] transition"
+                            className="h-9 border border-zinc-200 rounded-xl px-3 text-sm outline-none focus:border-primary transition"
                         />
                     </div>
 
@@ -179,7 +184,7 @@ export default function AddOperationModal({ onClose, onSaved }) {
                                 placeholder="0.00"
                                 min="0"
                                 step="0.01"
-                                className="h-9 border border-zinc-200 rounded-xl px-3 text-sm outline-none focus:border-[#156064] transition"
+                                className="h-9 border border-zinc-200 rounded-xl px-3 text-sm outline-none focus:border-primary transition"
                             />
                         </div>
                         <div className="flex flex-col gap-1">
@@ -190,7 +195,7 @@ export default function AddOperationModal({ onClose, onSaved }) {
                                 type="date"
                                 value={form.date}
                                 onChange={(e) => set('date', e.target.value)}
-                                className="h-9 border border-zinc-200 rounded-xl px-3 text-sm outline-none focus:border-[#156064] transition"
+                                className="h-9 border border-zinc-200 rounded-xl px-3 text-sm outline-none focus:border-primary transition"
                             />
                         </div>
                     </div>
@@ -221,7 +226,7 @@ export default function AddOperationModal({ onClose, onSaved }) {
 
                     {/* Error message displayed when validation or API call fails */}
                     {error && (
-                        <p className="text-xs text-red-600 bg-red-50 rounded-lg px-3 py-2">
+                        <p className="text-xs text-error bg-error/10 rounded-lg px-3 py-2">
                             {error}
                         </p>
                     )}
@@ -232,14 +237,14 @@ export default function AddOperationModal({ onClose, onSaved }) {
                     <button
                         onClick={handleSubmit}
                         disabled={loading}
-                        className="h-10 rounded-xl bg-[#156064] text-white text-sm font-semibold hover:bg-[#0f4a4d] disabled:opacity-50 transition"
+                        className="h-10 rounded-xl bg-accent text-white text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition"
                     >
                         {/* Show loading state while API request is in progress */}
                         {loading ? 'Saving…' : 'Save operation'}
                     </button>
                     <button
                         onClick={onClose}
-                        className="h-9 rounded-xl border-[1.5px] border-red-200 bg-red-50 text-red-600 text-sm font-semibold hover:bg-red-100 transition"
+                        className="h-9 rounded-xl border-[1.5px] border-error/30 bg-error/10 text-error text-sm font-semibold hover:bg-error/20 transition"
                     >
                         Cancel
                     </button>

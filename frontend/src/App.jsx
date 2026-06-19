@@ -5,19 +5,19 @@ function App() {
     const navigate = useNavigate()
     return (
         <>
-            <nav className="flex w-6xl py-4 items-center m-auto justify-between">
+            <nav className="flex w-full max-w-6xl py-4 px-4 items-center m-auto justify-between">
                 <div className="font-bold">
                     <span>
-                        <strong className="text-[#00C49A] py-1 px-2 rounded-lg bg-[#156064]">
+                        <strong className="text-accent py-1 px-2 rounded-lg bg-primary">
                             M
                         </strong>
                     </span>{' '}
                     myBank
                 </div>
-                <div className="flex gap-3 p-2 hover:bg-zinc-50">
-                    <button>Sign in</button>
+                <div className="flex gap-2 sm:gap-3 p-2 hover:bg-zinc-50">
+                    <button className="text-sm sm:text-base">Sign in</button>
                     <button
-                        className="py-2 rounded-lg text-white px-4 bg-[#156064]"
+                        className="py-2 rounded-lg text-white px-3 sm:px-4 text-sm sm:text-base bg-primary"
                         onClick={() => {
                             navigate('/app')
                         }}
@@ -26,43 +26,44 @@ function App() {
                     </button>
                 </div>
             </nav>
-            <section className="h-screen flex  bg-zinc-50">
-                <div className="w-6xl h-[70%] m-auto ">
-                    <div className="border w-59.5 border-[#00C49A] py-2 px-2 mb-2 rounded-2xl">
-                        <p className="text-sm text-[#00C49A] font-semibold">
+
+            <section className="min-h-screen lg:h-screen flex bg-zinc-50 px-4 py-10 lg:py-0">
+                <div className="w-full max-w-6xl h-auto lg:h-[70%] m-auto">
+                    <div className="border w-fit border-accent py-2 px-2 mb-2 rounded-2xl">
+                        <p className="text-sm text-accent font-semibold">
                             Personal finance. Made simple
                         </p>
                     </div>
-                    <div className="flex h-full">
-                        <div className="flex-1 flex flex-col h-[80%] justify-between py-5">
-                            <h1 className="text-6xl ">
+                    <div className="flex flex-col lg:flex-row h-full gap-10 lg:gap-0">
+                        <div className="flex-1 flex flex-col h-auto lg:h-[80%] justify-between py-5 gap-6 lg:gap-0">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl">
                                 <span className="font-light">
                                     Take control of
                                 </span>{' '}
                                 <br /> <strong>your money</strong>
                             </h1>
-                            <p className="text-pretty text-zinc-400 ">
+                            <p className="text-pretty text-zinc-400">
                                 Track every expense, understand your spending
                                 patterns, and take control of your financial
                                 future with our simple, powerful expense
                                 tracker.
                             </p>
-                            <div>
-                                <button className="py-2 rounded-lg text-white px-4 bg-[#156064]">
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <button className="py-2 rounded-lg text-white px-4 bg-primary">
                                     Start for free
                                 </button>
-                                <a href="#" className="text-[#00C49A] px-2">
+                                <a href="#" className="text-accent px-2">
                                     see how it work{' '}
                                 </a>
                             </div>
-                            <div className="flex  items-center gap-1">
-                                <span className="bg-amber-300 p-2 text-sm font-bold text-[#156064] rounded-full">
+                            <div className="flex items-center gap-1 flex-wrap">
+                                <span className="bg-accent-2 p-2 text-sm font-bold text-primary rounded-full">
                                     CB
                                 </span>
-                                <span className="bg-amber-300 p-2 text-sm rounded-full font-bold text-[#156064]">
+                                <span className="bg-accent-2 p-2 text-sm rounded-full font-bold text-primary">
                                     AB
                                 </span>
-                                <span className="bg-amber-300 p-2 text-sm rounded-full font-bold text-[#156064]">
+                                <span className="bg-accent-2 p-2 text-sm rounded-full font-bold text-primary">
                                     MK
                                 </span>
                                 <p className="text-zinc-400 text-sm px-2">
@@ -70,9 +71,10 @@ function App() {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex-1 h-[80%]  relative">
+
+                        <div className="hidden lg:block flex-1 h-[80%] relative">
                             <div className="h-[80%] shadow-2xl rounded-lg w-[65%] bg-white absolute right-0">
-                                <div className="h-[20%] w-[97%] px-4 py-1 rounded-l-lg bg-[#156064]">
+                                <div className="h-[20%] w-[97%] px-4 py-1 rounded-l-lg bg-primary">
                                     <p className=" text-xs text-zinc-300">
                                         Total balance
                                     </p>
@@ -82,7 +84,7 @@ function App() {
                                 </div>
                                 <div className="flex flex-col mt-4 justify-between ">
                                     <div>
-                                        <div className=" rounded-lg border-[#156064] m-auto w-[90%] border-l-6 right-0 bg-white py-4  items-center flex  ">
+                                        <div className=" rounded-lg border-primary m-auto w-[90%] border-l-6 right-0 bg-white py-4  items-center flex  ">
                                             <div className="flex-1">
                                                 <p className="text-sm font-semibold">
                                                     Carrefour
@@ -91,7 +93,7 @@ function App() {
                                                     01 Aug salary
                                                 </p>
                                             </div>
-                                            <div className="flex-1 text-[#156064] text-end">
+                                            <div className="flex-1 text-success text-end">
                                                 <strong> +$ 3,200.00</strong>
                                             </div>
                                         </div>
@@ -106,8 +108,8 @@ function App() {
                                                     05 Aug food
                                                 </p>
                                             </div>
-                                            <div className="flex-1 text-[#156064] text-end">
-                                                <strong className="text-red-500 ">
+                                            <div className="flex-1 text-end">
+                                                <strong className="text-error ">
                                                     {' '}
                                                     -$ 87,40
                                                 </strong>
@@ -124,8 +126,8 @@ function App() {
                                                     07 Aug Transport
                                                 </p>
                                             </div>
-                                            <div className="flex-1 text-[#156064] text-end">
-                                                <strong className="text-red-500 ">
+                                            <div className="flex-1 text-end">
+                                                <strong className="text-error ">
                                                     {' '}
                                                     -$ 87,40
                                                 </strong>
@@ -138,14 +140,17 @@ function App() {
                     </div>
                 </div>
             </section>
-            <section className="h-screen bg-white flex flex-col items-center justify-center">
-                <span className="mb-3 text-[#00C49A]">Why my bank</span>
-                <h2 className="text-4xl font-semibold  mb-9">
+
+            <section className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-16">
+                <span className="mb-3 text-accent text-sm sm:text-base">
+                    Why my bank
+                </span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-9 text-center">
                     Evrything you need, nothing you don't.
                 </h2>
-                <div className=" flex gap-6 w-[80%] ">
-                    <div className="flex-1 flex justify-between flex-col p-4 h-62.5 border border-gray-200 rounded-lg ">
-                        <div className="w-8.5 h-8.5 text-[#156064] text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
+                <div className="flex flex-col md:flex-row gap-6 w-full max-w-5xl">
+                    <div className="flex-1 flex justify-between flex-col p-4 h-auto md:h-62.5 border border-gray-200 rounded-lg gap-4">
+                        <div className="w-8.5 h-8.5 text-primary text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
                             +
                         </div>
                         <p>
@@ -158,8 +163,8 @@ function App() {
                             financial records.
                         </p>
                     </div>
-                    <div className=" p-4 flex-1 flex justify-between flex-col h-62.5 border border-gray-200 rounded-lg ">
-                        <div className="w-8.5 h-8.5 text-[#156064] text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
+                    <div className="p-4 flex-1 flex justify-between flex-col h-auto md:h-62.5 border border-gray-200 rounded-lg gap-4">
+                        <div className="w-8.5 h-8.5 text-primary text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
                             +
                         </div>
                         <p>
@@ -172,8 +177,8 @@ function App() {
                             goes.
                         </p>
                     </div>
-                    <div className="flex-1 p-4 flex flex-col justify-between h-62.5 border border-gray-200 rounded-lg ">
-                        <div className="w-8.5 h-8.5 text-[#156064] text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
+                    <div className="flex-1 p-4 flex flex-col justify-between h-auto md:h-62.5 border border-gray-200 rounded-lg gap-4">
+                        <div className="w-8.5 h-8.5 text-primary text-xl flex items-center justify-center bg-zinc-100 rounded-lg">
                             +
                         </div>
                         <p>
@@ -188,37 +193,38 @@ function App() {
                     </div>
                 </div>
             </section>
-            <section className="bg-zinc-50 flex flex-col h-[200vh]">
-                <div className="flex-1 flex justify-center items-center">
-                    <div className="flex  h-[70%] w-[75%]">
-                        <div className="flex-1 flex items-center justify-center ">
-                            <div className="flex bg-white rounded-lg shadow-sm h-[70%] w-[80%]">
+
+            <section className="bg-zinc-50 flex flex-col py-10 lg:py-0 lg:h-[200vh]">
+                <div className="flex-1 flex justify-center items-center py-10 lg:py-0">
+                    <div className="flex flex-col md:flex-row h-auto lg:h-[70%] w-[90%] lg:w-[75%] gap-8 md:gap-0">
+                        <div className="flex-1 flex items-center justify-center">
+                            <div className="flex bg-white rounded-lg shadow-sm h-40 md:h-[70%] w-full md:w-[80%]">
                                 carte
                             </div>
                         </div>
-                        <div className="flex-1 relative flex items-center justify-center flex-col ">
-                            <h3 className=" w-full text-2xl font-semibold mb-2">
+                        <div className="flex-1 relative flex items-center justify-center flex-col text-center md:text-left">
+                            <h3 className="w-full text-xl sm:text-2xl font-semibold mb-2">
                                 Creat an acount
                             </h3>
                             <p className="text-zinc-400 z-10">
                                 Sign up in seconds with just your email. No
                                 credit card required, no commitments.
                             </p>
-                            <p className="absolute text-9xl left-1 top-1/2 font-extrabold text-zinc-100">
+                            <p className="hidden md:block absolute text-9xl left-1 top-1/2 font-extrabold text-zinc-100">
                                 01
                             </p>
                         </div>
                     </div>
                 </div>
-                <div className="flex-1 flex justify-center items-center">
-                    <div className="flex flex-row-reverse  h-[70%] w-[75%]">
-                        <div className="flex-1 flex items-center justify-center ">
-                            <div className="flex bg-white rounded-lg shadow-sm h-[70%] w-[80%]">
+                <div className="flex-1 flex justify-center items-center py-10 lg:py-0">
+                    <div className="flex flex-col md:flex-row-reverse h-auto lg:h-[70%] w-[90%] lg:w-[75%] gap-8 md:gap-0">
+                        <div className="flex-1 flex items-center justify-center">
+                            <div className="flex bg-white rounded-lg shadow-sm h-40 md:h-[70%] w-full md:w-[80%]">
                                 carte
                             </div>
                         </div>
-                        <div className="flex-1 relative flex items-center justify-center flex-col ">
-                            <h3 className=" w-full text-2xl font-semibold mb-2">
+                        <div className="flex-1 relative flex items-center justify-center flex-col text-center md:text-left">
+                            <h3 className="w-full text-xl sm:text-2xl font-semibold mb-2">
                                 Add operations
                             </h3>
                             <p className="text-zinc-400 z-10">
@@ -226,38 +232,39 @@ function App() {
                                 interface. Tag, categorize, and organize
                                 effortlessly.
                             </p>
-                            <p className="absolute text-9xl left-1 top-1/2 font-extrabold text-zinc-100">
+                            <p className="hidden md:block absolute text-9xl left-1 top-1/2 font-extrabold text-zinc-100">
                                 02
                             </p>
                         </div>
                     </div>
                 </div>
-                <div className="flex-1 flex justify-center items-center">
-                    <div className="flex  h-[70%] w-[75%]">
-                        <div className="flex-1 flex items-center justify-center ">
-                            <div className="flex bg-white rounded-lg shadow-sm h-[70%] w-[80%]">
+                <div className="flex-1 flex justify-center items-center py-10 lg:py-0">
+                    <div className="flex flex-col md:flex-row h-auto lg:h-[70%] w-[90%] lg:w-[75%] gap-8 md:gap-0">
+                        <div className="flex-1 flex items-center justify-center">
+                            <div className="flex bg-white rounded-lg shadow-sm h-40 md:h-[70%] w-full md:w-[80%]">
                                 carte
                             </div>
                         </div>
-                        <div className="flex-1 relative flex items-center justify-center flex-col ">
-                            <h3 className=" w-full text-2xl font-semibold mb-2">
+                        <div className="flex-1 relative flex items-center justify-center flex-col text-center md:text-left">
+                            <h3 className="w-full text-xl sm:text-2xl font-semibold mb-2">
                                 Understand spending
                             </h3>
                             <p className="text-zinc-400 z-10">
                                 Sign up in seconds with just your email. No
                                 credit card required, no commitments.
                             </p>
-                            <p className="absolute text-9xl left-1 top-1/2 font-extrabold text-zinc-100">
+                            <p className="hidden md:block absolute text-9xl left-1 top-1/2 font-extrabold text-zinc-100">
                                 03
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="h-[200vh] flex flex-col">
-                <div className="bg-[#0D1F1F] flex items-center justify-center flex-1">
-                    <div className="h-[50%]  w-[85%] gap-6 flex">
-                        <div className="flex-1 flex justify-between flex-col p-3 bg-white rounded-lg h-full w-full">
+
+            <section className="flex flex-col">
+                <div className="bg-primary flex items-center justify-center py-12 lg:py-0 lg:h-[33vh]">
+                    <div className="w-[90%] lg:w-[85%] gap-6 flex flex-col md:flex-row">
+                        <div className="flex-1 flex justify-between flex-col p-3 bg-white rounded-lg h-full w-full gap-3">
                             <div>⭐⭐⭐⭐⭐</div>
                             <p>
                                 "myBank transformed how I manage <br /> my
@@ -266,7 +273,7 @@ function App() {
                             </p>
                             <p className="text-zinc-400">Freelance Designer</p>
                         </div>
-                        <div className="flex-1 flex justify-between flex-col p-3 bg-white rounded-lg h-full w-full">
+                        <div className="flex-1 flex justify-between flex-col p-3 bg-white rounded-lg h-full w-full gap-3">
                             <div>⭐⭐⭐⭐⭐</div>
                             <p>
                                 "Finally, an expense tracker that doesn't
@@ -275,7 +282,7 @@ function App() {
                             </p>
                             <p className="text-zinc-400">Software enginer</p>
                         </div>
-                        <div className="flex-1 flex justify-between flex-col p-3 bg-white rounded-lg h-full w-full">
+                        <div className="flex-1 flex justify-between flex-col p-3 bg-white rounded-lg h-full w-full gap-3">
                             <div>⭐⭐⭐⭐⭐</div>
                             <p>
                                 "I love that I can self-host it. Privacy-first
@@ -285,26 +292,26 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-[#156064] flex-1 flex flex-col gap-3 justify-center items-center">
-                    <p className="text-white text-5xl font-semibold">
+
+                <div className="bg-primary flex flex-col gap-3 justify-center items-center py-16 px-4 text-center">
+                    <p className="text-white text-3xl sm:text-4xl lg:text-5xl font-semibold">
                         Start tracking today. It's free.
                     </p>
                     <p className="text-zinc-400 tracking-wide">
                         No credit card. No complexity.
                     </p>
-                    <button className="py-2 rounded-lg text-[#156064] px-8 bg-white">
+                    <button className="py-2 rounded-lg text-primary px-8 bg-white">
                         Get started free
                     </button>
                     <p className="text-zinc-400 text-xs">
                         Open source · Docker-ready · Self-hostable
                     </p>
                 </div>
-                <div className="bg-[#0D1F1F] flex-1 ">
-                    <div className=" flex flex-col h-full w-[90%] m-auto">
-                        {' '}
-                        <div className="flex-3 border-b-2 border-zinc-600">
-                            <div></div>
-                            <div className="flex gap-3 justify-between items-center border border-zinc-50">
+
+                <div className="bg-primary py-10 px-4">
+                    <div className="flex flex-col h-full w-full max-w-5xl m-auto gap-8">
+                        <div className="border-b-2 border-zinc-600 pb-8">
+                            <div className="flex flex-col sm:flex-row gap-6 sm:justify-between">
                                 <ul>
                                     <li className="text-white font-semibold mb-1">
                                         Product
@@ -330,10 +337,8 @@ function App() {
                                     <li className="text-zinc-400">Roadmap</li>
                                 </ul>
                             </div>
-                            <div></div>
-                            <div></div>
                         </div>
-                        <div className="flex-1 flex justify-between items-center">
+                        <div className="flex flex-col sm:flex-row gap-2 justify-between items-center text-center sm:text-left">
                             <p className="text-zinc-400">
                                 © 2025 myBank. All rights reserved.
                             </p>
