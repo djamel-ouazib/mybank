@@ -22,7 +22,7 @@ services:
             APP_SECRET: ${APP_SECRET}
             DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
         ports:
-            - '8000:80'
+            - '8000:8080'
 
     frontend:
         image: ghcr.io/djamel-ouazib/mybank-frontend:latest
