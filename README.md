@@ -9,6 +9,7 @@ L'application est accessible publiquement à l'adresse :
 **http://157.90.148.37**
 
 -   Frontend : http://157.90.148.37
+-   APP: http://157.90.148.37/app
 -   API backend : http://157.90.148.37/api/operations (via le proxy nginx du frontend)
 
 ## Sommaire
